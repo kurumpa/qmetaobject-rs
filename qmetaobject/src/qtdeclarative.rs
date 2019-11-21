@@ -504,8 +504,8 @@ struct Rust_QQuickItem : RustObject<QQuickItem> {
     virtual void dropEvent(QDropEvent *);
     virtual bool childMouseEventFilter(QQuickItem *, QEvent *);
     virtual void windowDeactivateEvent();*/
-    virtual void geometryChanged(const QRectF &new_geometry,
-                                 const QRectF &old_geometry) {
+    void geometryChanged(const QRectF &new_geometry,
+                                 const QRectF &old_geometry) override {
         rust!(Rust_QQuickItem_geometryChanged[rust_object : QObjectPinned<dyn QQuickItem> as "TraitObject",
                 new_geometry : QRectF as "QRectF", old_geometry : QRectF as "QRectF"] {
             rust_object.borrow_mut().geometry_changed(new_geometry, old_geometry);
