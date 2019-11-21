@@ -481,6 +481,9 @@ impl QVariant {
     pub fn variant_type(&self) -> i32 {
         unsafe { cpp!([self as "const QVariant*"] -> i32 as "int" { return self->type(); }) }
     }
+    pub fn user_type(&self) -> i32 {
+        unsafe { cpp!([self as "const QVariant*"] -> i32 as "int" { return self->userType(); }) }
+    }
 }
 impl From<QString> for QVariant {
     fn from(a: QString) -> QVariant {
