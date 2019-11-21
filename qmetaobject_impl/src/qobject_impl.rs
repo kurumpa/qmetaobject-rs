@@ -906,7 +906,7 @@ pub fn generate(input: TokenStream, is_qobject: bool) -> TokenStream {
         let plugin_data = qbjs::serialize(&object_data);
         let plugin_data_size = plugin_data.len();
         body = quote! { #body
-            #[link_section = ".qtmetadata"]
+            #[link_section = ".qtmetadata, section"]
             #[no_mangle]
             #[allow(non_upper_case_globals)]
             pub static qt_pluginMetaData: [u8 ; 20 + #plugin_data_size] = [
