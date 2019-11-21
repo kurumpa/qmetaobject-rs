@@ -477,6 +477,10 @@ impl QVariant {
     pub fn to_bool(&self) -> bool {
         unsafe { cpp!([self as "const QVariant*"] -> bool as "bool" { return self->toBool(); }) }
     }
+    
+    pub fn variant_type(&self) -> i32 {
+        unsafe { cpp!([self as "const QVariant*"] -> i32 as "int" { return self->type(); }) }
+    }
 }
 impl From<QString> for QVariant {
     fn from(a: QString) -> QVariant {
