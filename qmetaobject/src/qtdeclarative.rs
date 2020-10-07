@@ -56,7 +56,7 @@ cpp! {{
             , dbg(new QQmlDebuggingEnabler(true))
             , engine(new QQmlApplicationEngine())
         {
-            QQmlDebuggingEnabler::startTcpDebugServer(77777);
+            QQmlDebuggingEnabler::startTcpDebugServer(33333);
         }
     };
 }}
