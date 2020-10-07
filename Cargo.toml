@@ -2,7 +2,4 @@
 members = [
     'qmetaobject_impl',
     'qmetaobject',
-    'examples/todos',
-    'examples/graph',
-    'examples/qmlextensionplugins',
 ]

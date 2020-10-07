@@ -28,6 +28,7 @@ cpp! {{
     #include <QtCore/QDebug>
     #include <QtWidgets/QApplication>
     #include <QtQml/QQmlComponent>
+    #include <QtQml/qqmldebug.h>
 
     struct SingleApplicationGuard {
         SingleApplicationGuard() {
@@ -47,12 +48,16 @@ cpp! {{
     struct QmlEngineHolder : SingleApplicationGuard {
         std::unique_ptr<QApplication> app;
         std::unique_ptr<QQmlApplicationEngine> engine;
+        std::unique_ptr<QQmlDebuggingEnabler> dbg;
         std::unique_ptr<QQuickView> view;
 
         QmlEngineHolder(int &argc, char **argv)
             : app(new QApplication(argc, argv))
+            , dbg(new QQmlDebuggingEnabler(true))
             , engine(new QQmlApplicationEngine())
-        {}
+        {
+            QQmlDebuggingEnabler::startTcpDebugServer(77777);
+        }
     };
 }}
 
