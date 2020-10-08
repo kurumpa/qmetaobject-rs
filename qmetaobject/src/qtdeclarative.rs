@@ -23,7 +23,7 @@ use super::*;
 static HAS_ENGINE: std::sync::atomic::AtomicBool = std::sync::atomic::AtomicBool::new(false);
 
 cpp! {{
-    #define QT_QML_DEBUG_NO_WARNING
+    #define QT_QML_DEBUG
 
     #include <memory>
     #include <QtQuick/QtQuick>
@@ -56,7 +56,7 @@ cpp! {{
             : app(new QApplication(argc, argv))
             , engine(new QQmlApplicationEngine())
         {
-            QQmlDebuggingEnabler::startTcpDebugServer(33333);
+            printf("Debug server: %i", QQmlDebuggingEnabler::startTcpDebugServer(33333));
         }
     };
 }}
