@@ -23,6 +23,8 @@ use super::*;
 static HAS_ENGINE: std::sync::atomic::AtomicBool = std::sync::atomic::AtomicBool::new(false);
 
 cpp! {{
+    #define QT_QML_DEBUG_NO_WARNING
+
     #include <memory>
     #include <QtQuick/QtQuick>
     #include <QtCore/QDebug>
@@ -48,12 +50,10 @@ cpp! {{
     struct QmlEngineHolder : SingleApplicationGuard {
         std::unique_ptr<QApplication> app;
         std::unique_ptr<QQmlApplicationEngine> engine;
-        std::unique_ptr<QQmlDebuggingEnabler> dbg;
         std::unique_ptr<QQuickView> view;
 
         QmlEngineHolder(int &argc, char **argv)
             : app(new QApplication(argc, argv))
-            , dbg(new QQmlDebuggingEnabler(true))
             , engine(new QQmlApplicationEngine())
         {
             QQmlDebuggingEnabler::startTcpDebugServer(33333);
