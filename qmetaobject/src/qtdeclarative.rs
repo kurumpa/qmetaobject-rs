@@ -56,7 +56,7 @@ cpp! {{
             : app(new QApplication(argc, argv))
             , engine(new QQmlApplicationEngine())
         {
-            printf("Debug server: %i", QQmlDebuggingEnabler::startDebugConnector(QLatin1String("QQmlNativeDebugConnector")));
+            printf("Debug server: %i", QQmlDebuggingEnabler::startTcpDebugServer(33333));
         }
     };
 }}
